@@ -19,8 +19,8 @@ COPY --from=root-certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 # 复制应用代码
 COPY . .
 # 构建应用
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod=vendor -o ./youtube-stats ./app/./...
-
+# RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod=vendor -o ./youtube-stats ./app/./...
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./youtube-stats ./app/./...
 
 # 使用 scratch 作为最终镜像
 FROM scratch as final
